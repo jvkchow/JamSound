@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views import View
 
 # Create your views here.
-class SearchView(View):
+class HomeView(View):
     template_name = 'home.html'
 
     def get(self, request, *args, **kwargs):
