@@ -8,6 +8,7 @@
         rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
         crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
 
         <title>{% block title %} {% endblock %}</title>
     </head>
@@ -18,14 +19,19 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
+                    <ul class="nav navbar-nav p-3">
                         <li class="nav-item">
                             <a class="nav-link active" href="/">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="/">Search</a>
-                        </li>
                     </ul>
+                    <div class="input-group">
+                        <div class="form-outline" data-mdb-input-init>
+                            <input type="search" id="search-form" class="form-control" placeholder="Search"/>
+                        </div>
+                        <button type="button" class="btn btn-secondary" data-mdb-ripple-init>
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </nav>
