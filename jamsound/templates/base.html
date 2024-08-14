@@ -21,17 +21,19 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav py-2">
                         <li class="nav-item ps-2">
-                            <a class="nav-link active" href="/">Home</a>
+                            <a class="nav-link active fs-5" href="/">Home</a>
                         </li>
                     </ul>
-                    <div class="input-group ps-4">
-                        <div class="form-outline" data-mdb-input-init>
-                            <input type="search" id="search-form" class="form-control" placeholder="Search"/>
+                    <form method="GET">
+                        <div class="input-group ps-4">
+                            <div class="form-outline" data-mdb-input-init>
+                                <input type="search" id="search-form" class="form-control fs-5" placeholder="Search"/>
+                            </div>
+                            <button type="submit" value="search" class="btn btn-secondary" data-mdb-ripple-init>
+                                <i class="fas fa-search"></i>
+                            </button>
                         </div>
-                        <button type="button" class="btn btn-secondary" data-mdb-ripple-init>
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
+                    </form>
                 </div>
             </div>
         </nav>
