@@ -62,4 +62,4 @@ class HomeView(APIView):
             results = self.search_for_artist(token, search_input)
             return render(request, "search.html", {"artists":results})
         except:
-            return render(request, "home.html", {"artists":[]})
+            return render(request, "home.html")
