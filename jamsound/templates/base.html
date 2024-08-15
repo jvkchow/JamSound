@@ -25,9 +25,10 @@
                         </li>
                     </ul>
                     <form method="GET">
+                        {% csrf_token %}
                         <div class="input-group ps-4">
                             <div class="form-outline" data-mdb-input-init>
-                                <input type="search" id="search-form" class="form-control fs-5" placeholder="Search"/>
+                                <input name="search" type="search" id="search-form" class="form-control fs-5" placeholder="Search"/>
                             </div>
                             <button type="submit" value="search" class="btn btn-secondary" data-mdb-ripple-init>
                                 <i class="fas fa-search"></i>

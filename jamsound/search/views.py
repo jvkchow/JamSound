@@ -9,7 +9,7 @@ from requests import post, get
 
 # Create your views here.
 class HomeView(APIView):
-    template_name = 'home.html'
+    template_name = "home.html"
 
     # get application's client ID and client secret
     load_dotenv()
@@ -41,17 +41,21 @@ class HomeView(APIView):
         url = "https://api.spotify.com/v1/search"
         headers = self.get_auth_header(token)
         #query = f"?q={artist}&type=artist,track&limit=1"
-        query = f"?q={artist}&type=artist&limit=1"
+        query = f"?q={artist}&type=artist&limit=10"
         full_query = url + query
 
         res = get(full_query, headers=headers)
         json_res = json.loads(res.content)
-        print("\n==============================")
+
+        results = []
         for artist in json_res["artists"]["items"]:
-            print("Name:", artist["name"] + ", " + "URL:", artist["external_urls"]["spotify"])
-        print("==============================\n")
+            artist_info = "Name: " + artist["name"] + ", " + "URL: " + artist["external_urls"]["spotify"]
+            results.append(artist_info)
+        return results
 
     def get(self, request, *args, **kwargs):
         token = self.get_token()
-        self.search_for_artist(token, "Hoshimachi Suisei")
+        search_input = request.GET["search"]
+        results = self.search_for_artist(token, search_input)
+        print(results)
         return render(request, self.template_name)
