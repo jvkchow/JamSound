@@ -49,13 +49,18 @@ class HomeView(APIView):
 
         results = []
         for artist in json_res["artists"]["items"]:
-            artist_info = "Name: " + artist["name"] + ", " + "URL: " + artist["external_urls"]["spotify"]
+            artist_info = {}
+            artist_info["name"] = artist["name"]
+            artist_info["url"] = artist["external_urls"]["spotify"]
             results.append(artist_info)
         return results
 
     def get(self, request, *args, **kwargs):
         token = self.get_token()
-        search_input = request.GET["search"]
-        results = self.search_for_artist(token, search_input)
-        print(results)
-        return render(request, self.template_name)
+        try:
+            search_input = request.GET["search"]
+            results = self.search_for_artist(token, search_input)
+            print(results)
+            return render(request, self.template_name, {"artists":results})
+        except:
+            return render(request, self.template_name, {"artists":[]})
