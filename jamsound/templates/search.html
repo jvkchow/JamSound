@@ -1,0 +1,23 @@
+{% extends "base.html " %}
+{% block title %} JamSound {% endblock title %}
+
+{% block content %}
+    <h3 class="display-3 ps-4 py-4">Artists</h3>
+    {% if artists %}
+        {% for artist in artists %}
+        <div class="container-fluid ps-4">
+            <a class="text-white" href="{{ artist.url }}" style="text-decoration:none" target="_blank">
+                <div class="card mb-3" style="width: 30%; height: 10rem;">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                            <img src="{{ artist.image }}" class="rounded" style="height: 8rem; width: 8rem;">
+                            <h3 class="card-text ps-4">{{ artist.name }}</h3>
+                            </div>
+                        </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    {% endif %}
+
+{% endblock content %}

@@ -20,5 +20,5 @@ from search.views import HomeView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', HomeView.as_view(template_name='home.html'), name='search')
+    path('', HomeView.as_view(), name='home')
 ]

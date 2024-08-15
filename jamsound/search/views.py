@@ -9,7 +9,6 @@ from requests import post, get
 
 # Create your views here.
 class HomeView(APIView):
-    template_name = "home.html"
 
     # get application's client ID and client secret
     load_dotenv()
@@ -52,6 +51,7 @@ class HomeView(APIView):
             artist_info = {}
             artist_info["name"] = artist["name"]
             artist_info["url"] = artist["external_urls"]["spotify"]
+            artist_info["image"] = artist["images"][0]["url"]
             results.append(artist_info)
         return results
 
@@ -60,7 +60,6 @@ class HomeView(APIView):
         try:
             search_input = request.GET["search"]
             results = self.search_for_artist(token, search_input)
-            print(results)
-            return render(request, self.template_name, {"artists":results})
+            return render(request, "search.html", {"artists":results})
         except:
-            return render(request, self.template_name, {"artists":[]})
+            return render(request, "home.html", {"artists":[]})
