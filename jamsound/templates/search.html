@@ -37,9 +37,11 @@
                                     <div class="card-body">
                                         <div class="d-flex align-items-center">
                                             <img src="{{ track.image }}" class="rounded" style="height: 8rem; width: 8rem;">
-                                            <h3 class="card-text ps-4">{{ track.name }}</h3>
+                                            <div class="card-body" style="width: 70%">
+                                                <h3 class="card-title ps-4">{{ track.name }}</h3>
+                                                <p class="card-text ps-4">{{ track.artists }}</p>
+                                            </div>
                                         </div>
-                                        <p>{{ track.artists }}</p>
                                     </div>
                             </div>
                         </a>
