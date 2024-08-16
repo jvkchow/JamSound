@@ -36,30 +36,53 @@ class HomeView(APIView):
     def get_auth_header(self, token):
         return {"Authorization": "Bearer " + token}
 
-    def search_for_artist(self, token, artist):
+    def search(self, token, search):
         url = "https://api.spotify.com/v1/search"
         headers = self.get_auth_header(token)
-        #query = f"?q={artist}&type=artist,track&limit=1"
-        query = f"?q={artist}&type=artist&limit=10"
+        query = f"?q={search}&type=artist,track&limit=10"
         full_query = url + query
 
         res = get(full_query, headers=headers)
         json_res = json.loads(res.content)
 
-        results = []
+        print("\n", json_res, "\n")
+
+        artist_results = []
         for artist in json_res["artists"]["items"]:
             artist_info = {}
             artist_info["name"] = artist["name"]
             artist_info["url"] = artist["external_urls"]["spotify"]
-            artist_info["image"] = artist["images"][0]["url"]
-            results.append(artist_info)
-        return results
+            if artist["images"] == []:
+                artist_info["image"] = ""
+            else:
+                artist_info["image"] = artist["images"][0]["url"]
+            artist_results.append(artist_info)
+
+        track_results = []
+        for track in json_res["tracks"]["items"]:
+            track_info = {}
+            track_info["name"] = track["name"]
+            track_info["url"] = track["external_urls"]["spotify"]
+
+            if track["album"]["images"] == []:
+                track_info["image"] = ""
+            else:
+                track_info["image"] = track["album"]["images"][0]["url"]
+
+            track_artists = []
+            for artist in track["artists"]:
+                track_artists.append(artist["name"])
+            track_info["artists"] = track_artists
+            track_results.append(track_info)
+
+        return artist_results, track_results
 
     def get(self, request, *args, **kwargs):
         token = self.get_token()
         try:
             search_input = request.GET["search"]
-            results = self.search_for_artist(token, search_input)
-            return render(request, "search.html", {"artists":results})
-        except:
+            artists, tracks = self.search(token, search_input)
+            return render(request, "search.html", {"artists":artists, "tracks":tracks})
+        except Exception as e:
+            print(e)
             return render(request, "home.html")
