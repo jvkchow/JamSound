@@ -39,7 +39,17 @@
                                             <img src="{{ track.image }}" class="rounded" style="height: 8rem; width: 8rem;">
                                             <div class="card-body" style="width: 70%">
                                                 <h3 class="card-title ps-4">{{ track.name }}</h3>
-                                                <p class="card-text ps-4">{{ track.artists }}</p>
+                                                <div class="ps-4">
+                                                    {% for artist in track.artists %}
+                                                    <div class="d-inline-flex justify-content-sm-start align-items-start">
+                                                            {% if forloop.last %}
+                                                            <p class="card-text">{{ artist }}</p>
+                                                            {% else %}
+                                                            <p class="card-text">{{ artist }}, </p>
+                                                            {% endif %}
+                                                    </div>
+                                                    {% endfor %}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
