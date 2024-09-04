@@ -68,7 +68,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'jamsound.wsgi.application'
+WSGI_APPLICATION = 'jamsound.wsgi.app'
 
 
 # Database
