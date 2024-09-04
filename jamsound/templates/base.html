@@ -12,7 +12,7 @@
 
         <title>{% block title %} {% endblock %}</title>
     </head>
-    <body class="bg-dark" data-bs-theme="dark">
+    <body class="bg-dark d-flex flex-column min-vh-100" data-bs-theme="dark">
         <nav class="navbar navbar-expand-lg bg-secondary" data-bs-theme="secondary">
             <div class="container-fluid">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse">
@@ -39,5 +39,12 @@
             </div>
         </nav>
         {% block content %}{% endblock content %}
+        <footer class="mt-auto">
+            <div class="ps-4 py-4">
+                <p>Please note that all content on this site is provided by Spotify and the site itself does not have any affiliation with Spotify.</p>
+                {% load static %}
+                <img src="{% static 'spotify_logo_white.png' %}" alt="Spotify Logo White" style="width: 10%; height:auto"/>
+            </div>
+        </footer>
     </body>
 </html>

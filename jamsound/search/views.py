@@ -45,8 +45,6 @@ class HomeView(APIView):
         res = get(full_query, headers=headers)
         json_res = json.loads(res.content)
 
-        print("\n", json_res, "\n")
-
         artist_results = []
         for artist in json_res["artists"]["items"]:
             artist_info = {}
@@ -73,6 +71,7 @@ class HomeView(APIView):
             for artist in track["artists"]:
                 track_artists.append(artist["name"])
             track_info["artists"] = track_artists
+
             track_results.append(track_info)
 
         return artist_results, track_results
@@ -82,7 +81,6 @@ class HomeView(APIView):
         try:
             search_input = request.GET["search"]
             artists, tracks = self.search(token, search_input)
-            return render(request, "search.html", {"artists":artists, "tracks":tracks})
+            return render(request, "search.html", {"artists":artists, "tracks":tracks, "token":token})
         except Exception as e:
-            print(e)
             return render(request, "home.html")
