@@ -1,0 +1,67 @@
+{% extends "base.html " %}
+{% block title %} JamSound {% endblock title %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Display artists -->
+            <div class="col-6">
+                <h3 class="display-3 ps-4 py-4">Artists</h3>
+                {% if artists %}
+                    {% for artist in artists %}
+                    <div class="container-fluid ps-4">
+                        <a class="text-white" href="{{ artist.url }}" style="text-decoration:none" target="_blank">
+                            <div class="card mb-3" style="width: 70%; min-height: 10rem;">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center">
+                                            <img src="{{ artist.image }}" class="rounded" style="height: 8rem; width: 8rem;">
+                                            <h3 class="card-text ps-4">{{ artist.name }}</h3>
+                                        </div>
+                                    </div>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <h3 class="ps-4 py-4">No artists matching your search could be found.</h3>
+                {% endif %}
+            </div>
+            <!-- Display tracks -->
+            <div class="col-6">
+                <h3 class="display-3 ps-4 py-4">Tracks</h3>
+                {% if tracks %}
+                    {% for track in tracks %}
+                    <div class="container-fluid ps-4">
+                        <a class="text-white" href="{{ track.url }}" style="text-decoration:none" target="_blank">
+                            <div class="card mb-3" style="width: 70%; min-height: 10rem;">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center">
+                                            <img src="{{ track.image }}" class="rounded" style="height: 8rem; width: 8rem;">
+                                            <div class="card-body" style="width: 70%">
+                                                <h3 class="card-title ps-4">{{ track.name }}</h3>
+                                                <div class="ps-4">
+                                                    {% for artist in track.artists %}
+                                                    <div class="d-inline-flex justify-content-sm-start align-items-start">
+                                                            {% if forloop.last %}
+                                                            <p class="card-text">{{ artist }}</p>
+                                                            {% else %}
+                                                            <p class="card-text">{{ artist }}, </p>
+                                                            {% endif %}
+                                                    </div>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <h3 class="ps-4 py-4">No tracks matching your search could be found.</h3>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
