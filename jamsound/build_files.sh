@@ -1,3 +1,3 @@
-python -m ensurepip
+python3 -m ensurepip
 pip install -r requirements.txt
-python manage.py collectstatic
+python3 manage.py collectstatic
