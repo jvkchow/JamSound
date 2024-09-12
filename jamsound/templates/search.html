@@ -10,16 +10,15 @@
                 {% if artists %}
                     {% for artist in artists %}
                     <div class="container-fluid ps-4">
-                        <a class="text-white" href="{{ artist.url }}" style="text-decoration:none" target="_blank">
-                            <div class="card mb-3" style="width: 70%; min-height: 10rem;">
-                                    <div class="card-body">
-                                        <div class="d-flex align-items-center">
-                                            <img src="{{ artist.image }}" class="rounded" style="height: 8rem; width: 8rem;">
-                                            <h3 class="card-text ps-4">{{ artist.name }}</h3>
-                                        </div>
-                                    </div>
+                        <div class="card mb-3" style="width: 70%; min-height: 10rem;">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <img src="{{ artist.image }}" class="rounded" style="height: 8rem; width: 8rem;">
+                                    <h3 class="card-text ps-4">{{ artist.name }}</h3>
+                                </div>
                             </div>
-                        </a>
+                            <a class="stretched-link" href="{{ artist.url }}" target="_blank"></a>
+                        </div>
                     </div>
                     {% endfor %}
                 {% else %}
@@ -32,29 +31,28 @@
                 {% if tracks %}
                     {% for track in tracks %}
                     <div class="container-fluid ps-4">
-                        <a class="text-white" href="{{ track.url }}" style="text-decoration:none" target="_blank">
-                            <div class="card mb-3" style="width: 70%; min-height: 10rem;">
-                                    <div class="card-body">
-                                        <div class="d-flex align-items-center">
-                                            <img src="{{ track.image }}" class="rounded" style="height: 8rem; width: 8rem;">
-                                            <div class="card-body" style="width: 70%">
-                                                <h3 class="card-title ps-4">{{ track.name }}</h3>
-                                                <div class="ps-4">
-                                                    {% for artist in track.artists %}
-                                                    <div class="d-inline-flex justify-content-sm-start align-items-start">
-                                                            {% if forloop.last %}
-                                                            <p class="card-text">{{ artist }}</p>
-                                                            {% else %}
-                                                            <p class="card-text">{{ artist }}, </p>
-                                                            {% endif %}
-                                                    </div>
-                                                    {% endfor %}
-                                                </div>
+                        <div class="card mb-3" style="width: 70%; min-height: 10rem;">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <img src="{{ track.image }}" class="rounded" style="height: 8rem; width: 8rem;">
+                                    <div class="card-body" style="width: 70%">
+                                        <h3 class="card-title ps-4">{{ track.name }}</h3>
+                                        <div class="ps-4">
+                                            {% for artist in track.artists %}
+                                            <div class="d-inline-flex justify-content-sm-start align-items-start">
+                                                    {% if forloop.last %}
+                                                    <p class="card-text">{{ artist }}</p>
+                                                    {% else %}
+                                                    <p class="card-text">{{ artist }}, </p>
+                                                    {% endif %}
                                             </div>
+                                            {% endfor %}
                                         </div>
                                     </div>
+                                </div>
                             </div>
-                        </a>
+                            <a class="stretched-link" href="{{ track.url }}" target="_blank"></a>
+                        </div>
                     </div>
                     {% endfor %}
                 {% else %}
